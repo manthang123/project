@@ -1,16 +1,28 @@
 import React, { useState } from 'react';
 import { Search, User, Bell, Settings, LogOut, HelpCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const Topbar = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [searchFocused, setSearchFocused] = useState(false);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const profileMenuItems = [
     { icon: <User size={16} />, label: 'Profile', onClick: () => console.log('Profile clicked') },
     { icon: <Bell size={16} />, label: 'Notifications', onClick: () => console.log('Notifications clicked') },
     { icon: <Settings size={16} />, label: 'Settings', onClick: () => console.log('Settings clicked') },
     { icon: <HelpCircle size={16} />, label: 'Help', onClick: () => console.log('Help clicked') },
-    { icon: <LogOut size={16} />, label: 'Logout', onClick: () => console.log('Logout clicked') }
+    { 
+      icon: <LogOut size={16} />, 
+      label: 'Logout', 
+      onClick: () => {
+        console.log('Logout clicked'); 
+        // Add your logout logic here, e.g., clearing tokens or user data
+
+        // Navigate to the login page
+        navigate('/login'); // Adjust the path as needed
+      } 
+    }
   ];
 
   return (
